@@ -1,36 +1,31 @@
-Name:           hswip
-Version:        0.3
-Cabal-Version:  >= 1.6
-Build-type:     Simple
-License:        GPL
-License-File:   LICENSE
-Copyright:      (c) Evgeny Tarasov
-Maintainer:     etarasov.ekb@gmail.com
-Stability:      experimental
-Synopsis:       embedding prolog in haskell
-Description:    Library for embedding swi-prolog in haskell inspired by pyswip.
+name:           hswip
+version:        0.3
+cabal-version:  >= 1.10
+build-type:     Simple
+license:        GPL
+license-file:   LICENSE
+copyright:      (c) Evgeny Tarasov
+maintainer:     etarasov.ekb@gmail.com
+stability:      experimental
+synopsis:       embedding prolog in haskell
+description:    Library for embedding swi-prolog in haskell inspired by pyswip.
                 You should install swi-prolog in order to use the library.
                 It is recommended to use swi-prolog-5.10 or newer.
-                If you encounter troubles related to libswipl linking, you need to fix extra-lib-dirs parameter in hswipr.cabal to find libswipl.a in your system.
-Category:       Foreign, Language
-Tested-with:    GHC==6.12.3
+category:       Foreign, Language
+tested-with:    GHC==7.10.1
 
-Library
+library
+    default-language: Haskell98
     exposed-modules: Language.Prolog.HSwip,
                      Language.Prolog.HSwip.LowLevel
 
     other-modules:   Language.Prolog.HSwip.Internals
 
-    extensions: ForeignFunctionInterface
+    default-extensions: ForeignFunctionInterface
 
-    Build-Depends:  base < 5,
-                    haskell98,
+    build-depends:  base < 5,
                     mtl >= 1.1
-    Hs-Source-Dirs: src
-    Ghc-options:    -Wall 
+    hs-source-dirs: src
+    ghc-options:    -Wall
 
-    extra-libraries : swipl,
-                      readline,
-                      ncurses
-    extra-lib-dirs: /usr/lib/swipl-5.10.1/lib/i686-linux/
-
+    pkgconfig-depends: swipl
